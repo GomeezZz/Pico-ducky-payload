@@ -58,3 +58,27 @@ The script is written in DuckyScript and performs the following actions sequenti
 2.  **Customize the Payload**: Edit the `payload.dd` file with your own URLs, IP addresses, and ports.
 3.  **Copy the Payload**: Drag and drop the modified `payload.dd` file into the root directory of your Raspberry Pi Pico (it will appear as a USB drive).
 4.  **Execute**: Plug the Pico into the target machine. The payload will run automatically.
+
+
+---
+
+## 🎥 Proof of Concept (PoC)
+
+Below is a demonstration of the payload in action. The image shows the successful exfiltration of data, and the video provides a full walkthrough of the attack, from plugging in the Pico to achieving a reverse shell.
+
+**Image of successful data capture:**
+
+![PoC Execution Screenshot](./assets/burp.png)
+
+**Video Walkthrough:**
+
+[![Link to PoC Video](./assets/video_POC.mp4)]
+
+
+---
+
+## 🚧 Future Improvements & Contributions
+
+The current script serves as a functional proof of concept, but there is always room for improvement in stealth, efficiency, and features.
+
+Suggestions, bug reports, and contributions are more than welcome! Feel free to **open an issue** to discuss potential changes or **submit a pull request** with your improvements.
