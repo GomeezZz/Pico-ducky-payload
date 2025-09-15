@@ -70,9 +70,7 @@ Below is a demonstration of the payload in action. The image shows the successfu
 
 ![PoC Execution Screenshot](./assets/burp.png)
 
-**Video Walkthrough:**
 
-[![Link to PoC Video](./assets/new_video.mp4)]
 
 
 ---
