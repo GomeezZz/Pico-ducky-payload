@@ -64,7 +64,7 @@ The script is written in DuckyScript and performs the following actions sequenti
 
 ## 🎥 Proof of Concept (PoC)
 
-Below is a demonstration of the payload in action. The image shows the successful exfiltration of data, and the video provides a full walkthrough of the attack, from plugging in the Pico to achieving a reverse shell.
+Below is a demonstration of the payload in action. The image shows the successful exfiltration of data.
 
 **Image of successful data capture:**
 
